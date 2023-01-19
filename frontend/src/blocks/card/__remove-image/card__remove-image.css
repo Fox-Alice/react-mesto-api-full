@@ -1,0 +1,6 @@
+.card__remove-image {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    justify-content: center;
+  }

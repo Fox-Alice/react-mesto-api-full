@@ -1,0 +1,5 @@
+.card__image {
+    cursor: pointer;
+    min-width: 282px;
+    min-height: 282px;
+}

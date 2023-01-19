@@ -1,0 +1,9 @@
+.image-popup {    
+    background: rgba(0, 0, 0, .9);    
+}
+
+.image-popup_opened {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+}

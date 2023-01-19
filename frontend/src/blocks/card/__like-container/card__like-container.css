@@ -1,0 +1,6 @@
+.card__like-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+    line-height: 10px;
+}

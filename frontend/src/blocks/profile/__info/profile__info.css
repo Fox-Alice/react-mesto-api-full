@@ -1,0 +1,14 @@
+.profile__info {
+    justify-content: start;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    margin: 22.25px auto 14px;
+}
+
+@media screen and (min-width: 880px) {
+    .profile__info {
+        min-width: 336px;
+        align-items: end;
+        margin: 0;
+    }
+}
