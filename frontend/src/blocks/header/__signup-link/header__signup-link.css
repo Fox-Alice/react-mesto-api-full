@@ -1,0 +1,17 @@
+.header__signup-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 6px 0 46px 0;
+}
+
+.header__signup-link:hover {
+    opacity: .6;
+}
+
+.header__user {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 6px 24px 46px auto;
+}
