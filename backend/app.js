@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 
 const { errors } = require('celebrate');
 
+const cors = require('cors');
+
 const router = require('./routes');
 const errorHandler = require('./middlewares/errors-handler');
 
@@ -16,6 +18,8 @@ dotenv.config();
 const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
