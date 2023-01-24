@@ -55,13 +55,11 @@ const deleteCard = (async (req, res, next) => {
 
 const updateLike = (async (req, res, next, method) => {
   try {
-    console.log(req.user);
     const card = await Card.findByIdAndUpdate(
       req.params.id,
       { [method]: { likes: req.user._id } },
       { new: true },
     );
-      // .populate(['likes', 'owner']);
     if (!card) {
       next(new NotFoundError('Карточка не найдена'));
     } else {
@@ -70,7 +68,6 @@ const updateLike = (async (req, res, next, method) => {
     }
   } catch (err) {
     if (err instanceof mongoose.Error.CastError) {
-      console.log(err.message);
       next(new BadRequestError('Невалидный id карточки'));
     } else { next(err); }
   }

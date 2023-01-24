@@ -9,7 +9,10 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 
 const router = require('./routes');
+
 const errorHandler = require('./middlewares/errors-handler');
+
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 mongoose.set('strictQuery', true);
 
@@ -29,7 +32,11 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use(requestLogger);
+
 app.use('/', router);
+
+app.use(errorLogger);
 
 app.use(errors());
 
