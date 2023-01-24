@@ -71,13 +71,15 @@ const createUser = (async (req, res, next) => {
 
     await newUser.save();
     res.status(CREATED).send({
-      email: newUser.email,
-      name: newUser.name,
-      about: newUser.about,
-      avatar: newUser.avatar,
+      data:
+      {
+        _id: newUser._id,
+        email: newUser.email,
+      },
     });
   } catch (err) {
     if (err.code === 11000) {
+      console.log(err.message);
       next(new ConflictError('Пользователь уже существует'));
     } else if (err instanceof mongoose.Error.ValidationError) {
       next(new BadRequestError('Ошибка валидации'));
@@ -139,7 +141,7 @@ const login = async (req, res, next) => {
       throw new UnauthorizedError('Неправильный логин или пароль');
     }
     const token = generateToken({ _id: user._id });
-    res.status(OK).send({ message: 'Welcome!', token });
+    res.status(OK).send({ token });
   } catch (err) {
     next(err);
   }
