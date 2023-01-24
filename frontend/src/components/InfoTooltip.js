@@ -20,7 +20,7 @@ function InfoTooltip({ active, onClose, loggedIn, message }) {
                         src={loggedIn ? success : fail}
                         alt="Success"
                     />
-                    <p className="tooltip-popup__title popup__title">{message}</p>
+                    <p className="tooltip-popup__title popup__title">{message ? message : 'Ошибка'}</p>
                 </div>
             </div>
         </div>

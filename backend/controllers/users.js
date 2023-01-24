@@ -79,7 +79,6 @@ const createUser = (async (req, res, next) => {
     });
   } catch (err) {
     if (err.code === 11000) {
-      console.log(err.message);
       next(new ConflictError('Пользователь уже существует'));
     } else if (err instanceof mongoose.Error.ValidationError) {
       next(new BadRequestError('Ошибка валидации'));

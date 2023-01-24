@@ -39,7 +39,8 @@ function App() {
   }
 
   const handleCardLike = (card) => {
-    const isLiked = card?.likes?.some(i => i._id === currentUser._id);
+    console.log(card.likes);
+    const isLiked = card.likes.some(id => id === currentUser._id);
     api.handleLike(card?._id, isLiked)
       .then((res) => {
         setCards((state) => state.map((c) => c._id === card._id ? res : c));
@@ -50,7 +51,7 @@ function App() {
   }
 
   const handleCardDelete = (card) => {
-    const isOwn = card?.owner?._id === currentUser._id;
+    const isOwn = card?.owner === currentUser._id;
     api.removeCard(card?._id)
       .then((res) => {
         if (isOwn) {
@@ -102,18 +103,19 @@ function App() {
   const cbLogin = useCallback(async ({ email, password }) => {
     try {
       setLoading(true);
-      const data = await auth.authorize({ password, email });
+      const data = await auth.authorize({ email, password });
       if (!data) {
         throw new Error('Неверное имя или пароль пользователя');
       }
       if (data.token) {
-        localStorage.setItem('token', data.token);
+        console.log(data.token);
+        localStorage.setItem('jwt', data.token);
         setLoggedIn(true);
         setUserData(data);
       }
       return data;
-    } catch (res) {
-      setMessage(res.message);
+    } catch (err) {
+      setMessage(err.message);
       setIsTooltipPopupOpen(true);
 
     } finally {
@@ -121,15 +123,15 @@ function App() {
     }
   }, [])
 
-  const cbRegister = useCallback(async (password, email) => {
+  const cbRegister = useCallback(async (email, password) => {
     try {
       setLoading(true);
-      const data = await auth.register(password, email);
+      const data = await auth.register(email, password);
       if (!data) {
         throw new Error('Пользователь не зарегистрирован');
       }
       if (data) {
-        cbLogin(password, email);
+        cbLogin(email, password);
         setIsTooltipPopupOpen(true);
       }
       return data;
@@ -151,7 +153,7 @@ function App() {
   const tokenCheck = useCallback(async () => {
     try {
       setLoading(true);
-      let token = localStorage.getItem('token');
+      let token = localStorage.getItem('jwt');
       if (!token) {
         throw new Error('no token')
       }
@@ -162,10 +164,9 @@ function App() {
       if (user) {
         setLoggedIn(true);
         setUserData(user);
-        setEmail(user.data.email);
+        setEmail(user.email);
       }
     } catch (err) {
-      console.log(err);
     } finally {
       setLoading(false)
     }

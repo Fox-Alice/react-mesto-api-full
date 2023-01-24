@@ -6,12 +6,12 @@ function Card({ item, onCardClick, onCardLike, onCardDelete }) {
 
     const currentUser = useContext(CurrentUserContext);
 
-    const isOwn = item?.owner?._id === currentUser?._id;
+    const isOwn = item?.owner === currentUser?._id;
     const cardDeleteButtonClassName = (
         `card__remove-button ${isOwn ? 'card__remove-button_visible' : ' '}`
     );
 
-    const isLiked = item?.likes?.some(i => i._id === currentUser?._id);
+    const isLiked = item?.likes?.some(id => id === currentUser?._id);
     const cardLikeButtonClassName = (
         `card__like ${isLiked ? 'card__like_active' : 'card__like'}`
     );;
@@ -50,7 +50,7 @@ function Card({ item, onCardClick, onCardLike, onCardDelete }) {
                 <h2 className="card__title">{item?.name}</h2>
                 <div className="card__like-container">
                     <button className={cardLikeButtonClassName} onClick={handleLikeClick} aria-label="like" type="button" />
-                    <span className="card__like-counter">{item?.likes.length}</span>
+                    <span className="card__like-counter">{item?.likes?.length}</span>
                 </div>
             </div>
         </div>

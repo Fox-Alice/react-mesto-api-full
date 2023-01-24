@@ -8,9 +8,9 @@ export const validationConfig = {
 }
 
 export const apiConfig = {
-    url: "https://mesto.nomoreparties.co./v1/cohort-51",
+    url: "https://api.foxalice.nomoredomains.rocks",
+
     headers: {
-        authorization: '31e7088a-3b9d-4de6-85fd-70c9c1c04334',
         'Content-Type': 'application/json'
     }
 }
