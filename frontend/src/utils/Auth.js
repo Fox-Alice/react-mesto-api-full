@@ -1,6 +1,5 @@
 export const BASE_URL = 
 'https://api.foxalice.nomoredomains.rocks';
-//  'http://localhost:3000';
 
 export const onResponse = (res) => {
   return res.ok ? res.json() : res.json()
