@@ -7,7 +7,6 @@
 * Express & MongoDB &  Node.js & деплой проекта
 
 ## необходимо зарегистрироваться, чтобы увидеть полный функционал проекта
-
   
 Ссылка на репозиторий проекта https://github.com/Fox-Alice/react-mesto-api-full.git
 * IP  158.160.26.31
